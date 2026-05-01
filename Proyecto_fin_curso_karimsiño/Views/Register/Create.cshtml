@@ -1,0 +1,47 @@
+@model Proyecto_fin_curso_karimsiño.Models.RegisterModel
+
+@{
+    ViewBag.Title = "Registro";
+}
+
+<h2 display-4 fw-bold">Registro de colaborador</h2>
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="nombre" class="form-label">Nombres completos</label>
+        <input asp-for="nombre" class="form-control" />
+        <span asp-validation-for="nombre" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="correo" class="form-label">Correo electrónico</label>
+        <input asp-for="correo" class="form-control" />
+        <span asp-validation-for="correo" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="rol" class="form-label">Cargo</label>
+        <input asp-for="rol" class="form-control" />
+        <span asp-validation-for="rol" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="clave" class="form-label">Contraseña</label>
+        <input asp-for="clave" class="form-control" id="claveInput" />
+        <span asp-validation-for="clave" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar manualmente</button>
+    <button type="button" class="btn btn-secondary" onclick="generarClave()">Generar contraseña aleatoria</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    @Html.Raw(@"<script>
+        function generarClave() {
+            const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+            let password = '';
+            for (let i = 0; i < 12; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById('claveInput').value = password;
+        }
+    </script>")
+}
+

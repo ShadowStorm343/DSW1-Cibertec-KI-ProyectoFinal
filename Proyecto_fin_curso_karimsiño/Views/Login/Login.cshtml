@@ -1,0 +1,25 @@
+@model Proyecto_fin_curso_karimsiño.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2 class="mb-4">Bienvenido, inicia sesión para marcar asistencia</h2>
+<form asp-action="Login" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="nombre" class="form-label"></label>
+        <input asp-for="nombre" class="form-control" />
+        <span asp-validation-for="nombre" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="clave" class="form-label"></label>
+        <input asp-for="clave" class="form-control" />
+        <span asp-validation-for="clave" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
